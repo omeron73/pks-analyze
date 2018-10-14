@@ -30,7 +30,7 @@ int main(int argc, char const *argv[])
         printf("dlzka ramca prenasaneho po mediu - %d B\n", lenght);
         
         int type;
-        memcpy(&type, &data[12], 2);
+        memcpy(&type, &data[11], 2);
         if (type > 0x05DC){
             printf("Ethernet II");
         }
