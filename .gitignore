@@ -52,3 +52,6 @@ Mkfile.old
 dkms.conf
 analyze
 file
+
+# VSCode
+.vscode
