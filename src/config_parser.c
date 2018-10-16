@@ -2,7 +2,7 @@
 
 ini_list * parse_ini(char * destination, int section){
 
-    FILE * fd = fopen(*destination, "r");
+    FILE * fd = fopen(destination, "r");
 
     char c;
     
@@ -30,8 +30,46 @@ ini_list * parse_ini(char * destination, int section){
 
     //add all name=value pairs to the list
 
-        while (1);
+        ini_list * node = malloc(sizeof(ini_list));
+        head = node;
+        int i;
+        while ( (c = fgetc(fd)) != EOF ){
+            
+            if ( c == '\n') break;
+
+            i = 0;
+            node->name[i++] = c;
+            while ( (c = fgetc(fd)) != '=' ){
+                node->name[i++] = c;
+            }
+            node->name[i] = '\0';
+
+            //scan value
+            fscanf(fd, "%d", &node->value);
+
+            fgetc(fd); //newline 
+
+            node->next_entry = malloc(sizeof(ini_list));
+            node = node->next_entry;
+
+        }
+
+        node->next_entry = NULL;
 
     //return head *
 
+    return head;
+
+}
+
+void print_ini_list(ini_list * head){
+
+    while (head->next_entry != NULL){
+
+        printf("%s = %d\n", head->name, head->value);
+        head = head->next_entry;
+
+    }
+
+    return;
 }

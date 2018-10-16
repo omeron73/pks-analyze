@@ -9,3 +9,5 @@ typedef struct ini_list{
 }ini_list;
 
 ini_list * parse_ini(char * destination, int section);
+void print_ini_list(ini_list * head);
+
