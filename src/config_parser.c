@@ -62,6 +62,21 @@ ini_list * parse_ini(char * destination, int section){
 
 }
 
+char * lookup(int value, ini_list* head){
+
+    char * key = (char*)malloc(50);
+
+    do{
+        if (head->value == value){
+            memcpy(key, head->name, sizeof(head->name));
+            break;
+        }
+    }while (head->next_entry != NULL);
+
+    return key;
+
+}
+
 void print_ini_list(ini_list * head){
 
     while (head->next_entry != NULL){
