@@ -42,5 +42,50 @@ void print_file(const char * filename){
         printf("%c", c);
     }
 
+    fclose(fd);
     return;
+}
+
+void add_ip(ip_addr * head, const char * ip_a, int size){
+
+    while (head != NULL){
+
+        if (head->bytes == 0){
+            head->bytes = size;
+            memcpy(head->addr, ip_a, 20);
+            return;
+        }
+        else if (strcmp(head->addr, ip_a) == 0){
+            head->bytes += size;
+            return;
+        }
+        else if (head->next != NULL){
+            head = head->next;
+            continue;
+        }
+        else{
+            head->next = malloc(sizeof(ip_addr));
+            head = head->next;
+            memcpy(head->addr, ip_a, 20);
+            head->bytes = size;
+            head->next = NULL;
+            return;
+        }
+
+    }
+
+}
+
+int write_ips(FILE * file, ip_addr * head){
+
+    int max = 0;
+    while (head != NULL){
+        fprintf(file, "%s %d\n", head->addr, head->bytes);
+        if (max < head->bytes) max = head->bytes;
+
+        head = head->next;
+    }
+
+    return max;
+
 }
