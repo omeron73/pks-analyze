@@ -11,9 +11,12 @@ int main(int argc, char const *argv[]){
         case 3:
                 analyze_all(argv[2]);
                 print_file(".temp/all.tmp");
+                remove(".temp/all.tmp");
+                remove(".temp/ips.tmp");
                 break;
         case 5:
                 analyze_with_filter(argv[2], argv[4]);
+                remove(".temp/frame.tmp");
                 break;
         default:
                 print_usage();
@@ -43,6 +46,5 @@ void analyze_with_filter(const char * filename, const char * filter){
         }
 
     } // end of main loop
-
     return;
 }
