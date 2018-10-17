@@ -3,7 +3,7 @@
 int analyze_packet(const unsigned char * data, const int filter, FILE * file){
     
     ini_list * ethertype = parse_ini("tables/ethertype.ini", 0);
-    
+
     char * type = lookup(read_two_bytes_to_int(&data[12]), ethertype);
     fprintf(file, "%s\n", type);
 
@@ -16,6 +16,10 @@ int analyze_packet(const unsigned char * data, const int filter, FILE * file){
     fprintf(file, "%s\n", protocol);
 
     int length = data[14] & 0x0F;
+
+    if (read_two_bytes_to_int(&data[12]) == 2054){
+        return 1;           //arp, should not be here
+    }
 
     if (data[23] == 6){
         if (analyze_segment(&data[14+(4*length)], filter, file) != 0){

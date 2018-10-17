@@ -49,9 +49,12 @@ int analyze_frame(const unsigned char * data, const int filter, const int counte
     fprintf(file, "\n");
 
     //check if should be written to output
-    if (analyze_packet(data, filter, file) != 0){
-        return 1;
+    if (filter != 9){
+        if (analyze_packet(data, filter, file) != 0){
+            return 1;
+        }
     }
+    
 
 
     //print data
