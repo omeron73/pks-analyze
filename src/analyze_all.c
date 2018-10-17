@@ -40,7 +40,9 @@ void analyze_all(const char * filename){
         fprintf(all, "dlzka ramca prenasana po mediu - %d B\n", real_size);
 
         //type
-        if (data[12] > 0x05){
+        
+        
+        if (read_2_bytes_to_int(&data[12]) > 0x05DC){
             fprintf(all, "Ethernet II\n");
         }
         else{

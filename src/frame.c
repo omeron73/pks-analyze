@@ -3,7 +3,7 @@
 int analyze_frame(const unsigned char * data, const int filter, const int counter, struct pcap_pkthdr * header){
 
     FILE * file = fopen(".temp/frame.tmp", "w");
-
+    
     fprintf(file, "Ramec %d\n", counter);
     fprintf(file, "dlzka ramca poskytnuta pcap API - %d B\n", header->len);
 
@@ -49,9 +49,10 @@ int analyze_frame(const unsigned char * data, const int filter, const int counte
     fprintf(file, "\n");
 
     //check if should be written to output
-    if (analyze_packet(data, filter) != 0){
+    if (analyze_packet(data, filter, file) != 0){
         return 1;
     }
+
 
     //print data
     for (int i = 0; i < header->len; i++){
@@ -64,6 +65,8 @@ int analyze_frame(const unsigned char * data, const int filter, const int counte
         }
     }
     fprintf(file, "\n\n");
+
+    fclose(file);
 
     return 0;
 }

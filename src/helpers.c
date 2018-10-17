@@ -29,6 +29,12 @@ int get_filter_id(const char * filter){
     else if (strcmp("arp", filter) == 0){
         return 9;
     }
+    else if (strcmp("tcp", filter) == 0){
+        return 10;
+    }
+    else if (strcmp("udp", filter) == 0){
+        return 11;
+    }
 
     return 0;
 }
@@ -87,5 +93,17 @@ int write_ips(FILE * file, ip_addr * head){
     }
 
     return max;
+
+}
+
+int read_2_bytes_to_int(const unsigned char * start){
+
+    unsigned char value[4] = {0};
+
+    value[1] = start[0];
+    value[0] = start[1];
+    unsigned int * result = (int*)value;
+
+    return *result;
 
 }

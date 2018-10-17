@@ -3,12 +3,13 @@
 ini_list * parse_ini(char * destination, int section){
 
     FILE * fd = fopen(destination, "r");
-
+    
     char c;
     
     //iterate through file to desired section
 
         fgetc(fd);  //consume first [
+            
         for (int i = 0; i < section; i++){
 
             while( (c = fgetc(fd)) != '[' ){
@@ -71,6 +72,7 @@ char * lookup(int value, ini_list* head){
             memcpy(key, head->name, sizeof(head->name));
             break;
         }
+        head = head->next_entry;
     }while (head->next_entry != NULL);
 
     return key;

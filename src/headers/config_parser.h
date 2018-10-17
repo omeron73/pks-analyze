@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 typedef struct ini_list{
     char name[50];
     int value;
@@ -10,4 +11,4 @@ typedef struct ini_list{
 
 ini_list * parse_ini(char * destination, int section);
 void print_ini_list(ini_list * head);
-
+char * lookup(int value, ini_list* head);

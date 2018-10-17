@@ -12,3 +12,4 @@ int get_filter_id(const char * filter);
 void print_file(const char * filename);
 void add_ip(ip_addr * head, const char * ip_a, int size);
 int write_ips(FILE * file, ip_addr * head);
+int read_2_bytes_to_int(const unsigned char * start);
