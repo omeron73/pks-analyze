@@ -23,9 +23,9 @@ int analyze_packet(const unsigned char * data, const int filter, FILE * file){
         }
     }
     else if (data[23] == 17){
-        // if (analyze_datagram() != 0){
+        if (analyze_datagram(&data[14+(4*length)], filter, file) != 0){
             return 1;
-        // }
+        }
     }
     else if (data[23] == 1){
         if (analyze_ICMP(&data[14+(4*length)], filter, file) != 0){
