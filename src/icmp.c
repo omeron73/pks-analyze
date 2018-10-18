@@ -11,6 +11,9 @@ int analyze_ICMP(const unsigned char * data, const int filter, FILE * file){
     if ( filter == 8){
         return 0;
     }
+    if ( (filter == 12) && (type == 3) ){
+        return 0;
+    }
 
     return 1;
 }

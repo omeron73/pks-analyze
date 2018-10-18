@@ -35,6 +35,9 @@ int get_filter_id(const char * filter){
     else if (strcmp("udp", filter) == 0){
         return 11;
     }
+    else if (strcmp("icmp-dest_unreach", filter) == 0){
+        return 12;
+    }
 
     return 0;
 }
