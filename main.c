@@ -43,5 +43,13 @@ void analyze_with_filter(const char * filename, const char * filter){
         }
 
     } // end of main loop
+    FILE * pocet_file;
+    int pocet;
+    if  ( (pocet_file = fopen(".temp/pocet.tmp", "r")) != NULL ){
+        fscanf(pocet_file, "%d", &pocet);
+        printf("Pocet - %d\n", pocet);
+    }
+
+    fclose(pocet_file);
     return;
 }
