@@ -50,4 +50,12 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# VSCode
+.vscode
+
+# my own
 analyze
+file
+.temp
+output
